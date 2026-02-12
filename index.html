@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Home</title>
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <script src="index.js" defer></script>
+    </head>
+    <body class="m-0 p-0 font-sans bg-[#2a2a2a] text-white flex justify-center items-center min-h-screen flex-col">
+
+        <main class="w-4/5 max-w-[800px] flex justify-center items-center flex-col">
+
+            <!-- SEARCH / FAVORITE  /  FILTER SECTION -->
+            <section class="w-full mb-8 mt-8 bg-[#1e3d59] rounded-[10px] p-5 shadow-lg">
+                <div>
+                    <form>
+                        <h1 class="text-center mb-10 text-2xl font-bold">
+                            Search Bar
+                        </h1>
+                        <!-- SEARCH -->
+                        <div class="flex justify-center items-center gap-3 mb-4">
+                            <input 
+                                type="text" 
+                                id="searchBar" 
+                                name="searchBar"
+                                class="w-[75%] p-2.5 text-black bg-[#f1f1f1] border border-gray-300 rounded" 
+                            />
+                            
+                            <!-- SEARCH BUTTON -->
+                            <input 
+                                type="submit" 
+                                id="search" 
+                                value="Search"
+                                class="px-5 py-2 m-1 bg-[#2c6f92] rounded cursor-pointer hover:bg-yellow-600" 
+                            />
+                        </div>
+                        <!-- FAVORITE / FILTER -->
+                        <div class="flex justify-center items-center gap-3 mb-4">
+                            <!-- FAVORITE BUTTON -->
+                            <input 
+                                type="button" 
+                                id="openFavorites" 
+                                value="Favorites"
+                                class="px-5 py-2 m-1 bg-[#2c6f92] rounded cursor-pointer hover:bg-yellow-600" 
+                            />
+
+                            <!-- FILTER BUTTON -->
+                            <input
+                                type="button"
+                                id="openFilters"
+                                value="Filters"
+                                class="px-5 py-2 m-1 bg-[#2c6f92] rounded cursor-pointer hover:bg-yellow-600"
+                            />
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- TABLE SECTION -->
+            <section class="w-full mb-8 bg-[#1e3d59] rounded-[10px] p-5 shadow-lg">
+                <div class="list text-center">
+                    <h1 class="text-xl mb-4">List of data</h1>
+
+                    <table class="w-full mt-5 border-collapse mb-[2%]">
+                        <thead>
+                            <tr>
+                                <th class="p-2 border-2 border-sky-700 bg-[#1e3d59]">User Id</th>
+                                <th class="p-2 border-2 border-sky-700 bg-[#1e3d59]">Id</th>
+                                <th class="p-2 border-2 border-sky-700 bg-[#1e3d59]">Title</th>
+                                <th class="p-2 border-2 border-sky-700 bg-[#1e3d59]">Completed</th>
+                                <th class="p-2 border-2 border-sky-700 bg-[#1e3d59]">Favorites</th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="data-table">
+                            <!-- JS renders rows here -->
+                        </tbody>
+                    </table>
+
+                    <div class="pagination flex flex-wrap justify-center gap-2 mt-4 max-w-full">
+                        <!-- JS renders pagination buttons here -->
+                    </div>
+                </div>
+            </section>
+        </main>
+        <!-- FILTER MODAL -->
+        <div id="filterDialog"
+            class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+
+            <div class="bg-[#1e3d59] p-6 rounded-xl w-[90%] max-w-md shadow-xl relative">
+
+                <h2 class="text-xl mb-4 text-center font-bold">Filters</h2>
+
+                <!-- Close button -->
+                <button id="closeFilters"
+                class="absolute top-3 right-3 px-2 py-1 bg-[#2c6f92] rounded hover:bg-yellow-600">
+                ✕
+                </button>
+
+                <!-- FILTER SELECTS -->
+                <h3 class="mt-4">UserId</h3>
+                <select id="userId" class="w-full p-2.5 mb-4 text-black bg-[#f1f1f1] border border-gray-300 rounded">
+                    <!-- JS renders options here -->
+                </select>
+
+                <h3>Id</h3>
+                <select id="id" class="w-full p-2.5 mb-4 text-black bg-[#f1f1f1] border border-gray-300 rounded">
+                    <!-- JS renders options here -->
+                </select>
+
+                <h3>Title</h3>
+                <select id="title" class="w-full p-2.5 mb-4 text-black bg-[#f1f1f1] border border-gray-300 rounded">
+                    <!-- JS renders options here -->
+                </select>
+
+                <h3>Completed</h3>
+                <select id="completed" class="w-full p-2.5 mb-4 text-black bg-[#f1f1f1] border border-gray-300 rounded">
+                    <!-- JS renders options here -->
+                </select>
+
+                <!-- reset button -->
+                <div class="flex justify-center items-center gap-3 mb-4">
+                    <input 
+                    type="button" 
+                    id="reset" 
+                    value="Reset filter"
+                    class="px-5 py-2 m-1 bg-[#2c6f92] rounded cursor-pointer hover:bg-yellow-600" 
+                    />
+                </div>
+            </div>
+        </div>
+        <!-- FAVORITE MODAL -->
+        <div id="favoriteDialog"
+            class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+            
+            <div class="bg-[#1e3d59] p-6 rounded-xl w-full max-w-2xl -md shadow-xl relative">
+                <!-- Close button -->
+                <button id="closeFavorite"
+                class="absolute top-3 right-3 px-2 py-1 bg-[#2c6f92] rounded hover:bg-yellow-600">
+                ✕
+                </button>
+
+                <h1 class="text-xl mb-4">Favorites List</h1>
+                <table class="w-full mt-5 border-collapse mb-[2%]">
+                    <thead>
+                        <tr>
+                            <th class="p-2 border-2 border-sky-700 bg-[#1e3d59]">User Id</th>
+                            <th class="p-2 border-2 border-sky-700 bg-[#1e3d59]">Id</th>
+                            <th class="p-2 border-2 border-sky-700 bg-[#1e3d59]">Title</th>
+                            <th class="p-2 border-2 border-sky-700 bg-[#1e3d59]">Completed</th>
+                            <th class="p-2 border-2 border-sky-700 bg-[#1e3d59]">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody class="favorite-data-table">
+                        <!-- JS renders rows here -->
+                    </tbody>
+                </table>
+                <div class="favoritePagination flex flex-wrap justify-center gap-2 mt-4 max-w-full">
+                    <!-- JS renders pagination buttons here -->
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
